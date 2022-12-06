@@ -33,6 +33,8 @@ tasks.register<Assemble>("assemble") {
     toolChain.set(plainc.repositoryTool("com.example", "vendor-x", "1.2", "bin/xas", ".o"))
     targetPlatform.set(plainc.platform())
 
+    outputs.cacheIf { true }
+
     source(compileC2.map { it.objectFileDir.asFileTree })
     includes(layout.projectDirectory.files("src/headers"))
     assemblerArgs = listOf("-D")
