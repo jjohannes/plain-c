@@ -7,9 +7,11 @@ import org.gradle.api.attributes.Attribute;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.model.ObjectFactory;
 import org.gradle.nativeplatform.platform.NativePlatform;
+import org.gradle.nativeplatform.platform.internal.DefaultArchitecture;
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform;
+import org.gradle.nativeplatform.platform.internal.DefaultOperatingSystem;
 import org.gradle.nativeplatform.toolchain.NativeToolChain;
 import software.onepiece.gradle.plainc.toolchain.PlainCNativeToolChain;
-import software.onepiece.gradle.plainc.toolchain.platform.DefaultNativePlatform;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -17,6 +19,12 @@ import java.io.File;
 public abstract class PlainCExtension {
 
     static final Attribute<Boolean> EXTRACTED_TOOLS_ATTRIBUTE = Attribute.of("extracted-tools", Boolean.class);
+
+    static final NativePlatform GENERIC_NATIVE_PLATFORM = new DefaultNativePlatform(
+            "generic_platform",
+            new DefaultOperatingSystem("generic_os"),
+            new DefaultArchitecture("generic_arch")
+    );
 
     public NativeToolChain localTool(String version, String location, String objectFileExtension) {
         File tool = new File(location);
@@ -33,7 +41,7 @@ public abstract class PlainCExtension {
     }
 
     public NativePlatform platform() {
-        return DefaultNativePlatform.DEFAULT;
+        return GENERIC_NATIVE_PLATFORM;
     }
 
     @Inject

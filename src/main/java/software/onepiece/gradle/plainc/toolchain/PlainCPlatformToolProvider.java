@@ -97,12 +97,6 @@ public abstract class PlainCPlatformToolProvider implements PlatformToolProvider
         return new DefaultMutableCommandLineToolContext();
     }
 
-
-    @Override
-    public String getObjectFileExtension() {
-        return ".o";
-    }
-
     @Override
     public String getExecutableName(String executablePath) {
         return executablePath;
@@ -166,6 +160,11 @@ public abstract class PlainCPlatformToolProvider implements PlatformToolProvider
 
     @Override
     public void explain(DiagnosticsVisitor visitor) {
+    }
+
+    @Override
+    public String getObjectFileExtension() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
