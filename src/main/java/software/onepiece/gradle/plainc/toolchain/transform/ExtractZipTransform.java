@@ -1,6 +1,5 @@
 package software.onepiece.gradle.plainc.toolchain.transform;
 
-import org.gradle.api.artifacts.transform.CacheableTransform;
 import org.gradle.api.artifacts.transform.InputArtifact;
 import org.gradle.api.artifacts.transform.TransformAction;
 import org.gradle.api.artifacts.transform.TransformOutputs;
@@ -19,7 +18,6 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-@CacheableTransform
 public abstract class ExtractZipTransform implements TransformAction<TransformParameters.None> {
 
     @InputArtifact
