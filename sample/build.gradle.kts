@@ -1,4 +1,5 @@
 import software.onepiece.gradle.plainc.tasks.ExtendedCCompile
+import software.onepiece.gradle.plainc.tasks.IcrementalAssemble
 
 plugins {
     id("software.onepiece.plain-c")
@@ -31,13 +32,11 @@ val compileC2 = tasks.register<ExtendedCCompile>("compileC2") {
     objectFileDir.set(layout.buildDirectory.dir("out/src"))
 }
 
-tasks.register<Assemble>("assemble") {
+tasks.register<IcrementalAssemble>("assemble") {
     group = "mytasks"
 
     toolChain.set(plainc.repositoryTool("com.example", "vendor-x", "1.2", "bin/xas", ".o"))
     targetPlatform.set(plainc.platform())
-
-    outputs.cacheIf { true }
 
     source(compileC2.map { it.objectFileDir.asFileTree })
     includes(layout.projectDirectory.files("src/headers"))
