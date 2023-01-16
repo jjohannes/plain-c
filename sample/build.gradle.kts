@@ -1,13 +1,17 @@
+import software.onepiece.gradle.plainc.tasks.ExtendedCCompile
+
 plugins {
     id("software.onepiece.plain-c")
 }
 
-tasks.register<CCompile>("compileC") {
+tasks.register<ExtendedCCompile>("compileC") {
     group = "mytasks"
 
     source(layout.projectDirectory.files("src/c").asFileTree)
     includes(layout.projectDirectory.files("src/headers"))
     compilerArgs.add("-S")
+
+    perFileCompilerArgs.put("test.c", listOf("-v"))
 
     toolChain.set(plainc.localTool("14.0.0", "/usr/bin/clang", ".o"))
     targetPlatform.set(plainc.platform())
@@ -15,7 +19,7 @@ tasks.register<CCompile>("compileC") {
     objectFileDir.set(layout.buildDirectory.dir("out/o"))
 }
 
-val compileC2 = tasks.register<CCompile>("compileC2") {
+val compileC2 = tasks.register<ExtendedCCompile>("compileC2") {
     group = "mytasks"
 
     toolChain.set(plainc.repositoryTool("com.example", "vendor-x", "1.2", "bin/xcc", ".src"))
