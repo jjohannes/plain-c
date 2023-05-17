@@ -1,5 +1,5 @@
 plugins {
-    id("com.gradle.plugin-publish") version "1.0.0"
+    id("com.gradle.plugin-publish") version "1.2.0"
 }
 
 group = "software.onepiece.gradle"
@@ -16,11 +16,8 @@ gradlePlugin {
         implementationClass = "software.onepiece.gradle.plainc.PlainCPlugin"
         displayName = "Individualised C development with Gradle"
         description = "Allows you to directly use Gradle's native C compile/assemble/link tasks with custom executables"
+        vcsUrl.set("https://github.com/jjohannes/plain-c")
+        website.set(vcsUrl)
+        tags.addAll(listOf("native", "c"))
     }
-}
-
-pluginBundle {
-    vcsUrl = "https://github.com/jjohannes/plain-c"
-    website = vcsUrl
-    tags = listOf("native", "c")
 }
