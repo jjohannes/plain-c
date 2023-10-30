@@ -22,6 +22,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Incremental and cacheable version of the 'org.gradle.language.assembler.tasks.Assemble' task.
+ */
 @CacheableTask
 public abstract class IcrementalAssemble extends Assemble {
 

@@ -53,9 +53,9 @@ public class CCompiler extends NativeCompiler<CCompileSpec> {
 
         List<String> perFileArgs = extendedCCompileSpec.getPerFileCompilerArgs().get(sourceFile.getName());
         if (perFileArgs != null) {
-            List<String> perFileGenericArgs = new ArrayList<>(genericArgs);
-            perFileGenericArgs.addAll(perFileArgs);
-            return super.createPerFileInvocation(perFileGenericArgs, sourceFile, objectDir, spec);
+            List<String> allPerFileArgs = new ArrayList<>(genericArgs);
+            allPerFileArgs.addAll(perFileArgs);
+            return super.createPerFileInvocation(allPerFileArgs, sourceFile, objectDir, spec);
         } else {
             return super.createPerFileInvocation(genericArgs, sourceFile, objectDir, spec);
         }

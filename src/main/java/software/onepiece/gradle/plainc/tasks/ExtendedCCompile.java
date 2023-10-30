@@ -8,6 +8,10 @@ import org.gradle.nativeplatform.toolchain.internal.NativeCompileSpec;
 
 import java.util.List;
 
+/**
+ * Extension of the 'org.gradle.language.c.tasks.CCompile' that supports defining different compiler arguments
+ * for different source files.
+ */
 @CacheableTask
 public abstract class ExtendedCCompile extends CCompile {
 

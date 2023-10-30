@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NonNullApi
-public class StaticLibraryArchiverArgsTransformer implements ArgsTransformer<StaticLibraryArchiverSpec>
-{
-    public List<String> transform(StaticLibraryArchiverSpec spec)
-    {
+public class StaticLibraryArchiverArgsTransformer implements ArgsTransformer<StaticLibraryArchiverSpec> {
+
+    public List<String> transform(StaticLibraryArchiverSpec spec) {
         List<String> args = new ArrayList<>(spec.getAllArgs());
 
         args.add("-rv");

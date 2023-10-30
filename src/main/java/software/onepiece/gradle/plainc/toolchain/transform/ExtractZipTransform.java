@@ -27,9 +27,10 @@ public abstract class ExtractZipTransform implements TransformAction<TransformPa
     @Override
     public void transform(TransformOutputs outputs) {
         File input = getInputArtifact().get().getAsFile();
-        File unzipDir = outputs.dir(input.getName());
+        File unzipDir = outputs.dir(input.getName().substring(0, input.getName().lastIndexOf(".zip")));
         try {
             unzipTo(input, unzipDir);
+            System.out.println("Transformed into: " + unzipDir.getAbsolutePath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
